@@ -18,7 +18,7 @@ CREATE TABLE titles (
 );
 
 CREATE TABLE employees (
-    emp_no INT,
+    emp_no INT (10) NOT NULL,
     emp_title_id VARCHAR(50) NOT NULL,
     birth_date VARCHAR(50) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE employees (
 );
 
 CREATE TABLE dept_emp (
-    emp_no INT,
+    emp_no INT (10) NOT NULL,
     dept_no VARCHAR(50) NOT NULL,
 	FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
 	FOREIGN KEY (dept_no) REFERENCES departments (dept_no),
@@ -39,14 +39,15 @@ CREATE TABLE dept_emp (
 
 CREATE TABLE dept_manager (
     dept_no VARCHAR(50) NOT NULL,
-	emp_no INT,
+	emp_no INT (10) NOT NULL,
 	FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
+    FOREIGN KEY (dept_no) REFERENCES departments (dept_no),
 	PRIMARY KEY (dept_no, emp_no)
 );
 
 CREATE TABLE salaries (
-    emp_no INT,
-    salary INT,
+    emp_no INT (10) NOT NULL,
+    salary INT (10) NOT NULL,
 	PRIMARY KEY (emp_no),
 	FOREIGN KEY (emp_no) REFERENCES employees (emp_no)
 );
